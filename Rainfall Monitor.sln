@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Rainfall Monitor", "Rainfall Monitor\Rainfall Monitor.pyproj", "{5819C0D2-D1A0-4C90-A806-381BD2AFF85C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5819C0D2-D1A0-4C90-A806-381BD2AFF85C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5819C0D2-D1A0-4C90-A806-381BD2AFF85C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AE4D1F62-8F85-4273-A792-F3281CD634FD}
+	EndGlobalSection
+EndGlobal

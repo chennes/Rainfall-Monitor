@@ -1,0 +1,16 @@
+Projects
+
+Beginner:
+* Change which city the data gets fetched for
+* Print out the year-to-date data as well
+* Add error-handling for bad cities
+* Make the printout more attractive
+
+Intermediate:
+* Modify the class to store all the data for all the cities
+* Make a new class and store each city's data as data members of that class
+* Create a user-interface loop that asks the user for a city and displays its data
+
+Advanced:
+* Scrape yearly rainfall data from Mesonet
+* Chart the yearly rainfall for the past 50 years
