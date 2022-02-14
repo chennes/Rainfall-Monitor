@@ -40,19 +40,20 @@ MESONET_URL = "http://climate.ok.gov/index.php/climate/rainfall_table/local_data
 class RainfallDataExtractor(HTMLParser):
     """ A class to extract the rainfall data for a city """
 
-    def __init__ (self, city:str):
+    def __init__ (self):
         super().__init__()
-        self.city = city
-
         self.in_table = False
         self.in_tbody = False
         self.in_tr = False
         self.in_td = False
-        self.found_city = False
-        self.rainfall_data = []
+        self.last_found_city_name = ""
+        self.rainfall_data = {} 
 
-    def get_rainfall(self) -> List[float]:
-        return self.rainfall_data
+    def get_rainfall_for(self, city) -> List[float]:
+        if city in self.rainfall_data:
+            return self.rainfall_data[city]
+        else:
+            raise Exception (f"No data for city '{city}'")
 
     def handle_starttag(self, tag, attrs):
         if tag == "table":
@@ -71,21 +72,22 @@ class RainfallDataExtractor(HTMLParser):
             self.in_tbody = False
         elif tag == "tr":
             self.in_tr = False
+            self.last_found_city_name = ""
         elif tag == "td":
             self.in_td = False
 
     def handle_data(self, data):
         if self.in_table and self.in_tbody and self.in_tr and self.in_td:
-            if self.found_city:
+            if self.last_found_city_name:
                 try:
                     data_as_float = float(data)
-                    self.rainfall_data.append(data_as_float)
+                    self.rainfall_data[self.last_found_city_name].append(data_as_float)
                 except Exception:
                     # If the conversion failed, the station probably didn't report data that day, so assume zero rainfall
-                    self.rainfall_data.append(0.0)
+                    self.rainfall_data[self.last_found_city_name].append(0.0)
             else:
-                if data == self.city:
-                    self.found_city = True
+                self.last_found_city_name = data
+                self.rainfall_data[self.last_found_city_name] = []
 
 webpage = ""
 try:
@@ -100,11 +102,12 @@ except Exception as e:
     print (f"Error reading from {MESONET_URL}: {e.reason}")
 
 if webpage:
-    parser = RainfallDataExtractor("Norman")
+    parser = RainfallDataExtractor()
     parser.feed(webpage)
 
-    rainfall = parser.get_rainfall()
+    city = "Norman"
+    rainfall = parser.get_rainfall_for(city)
     weekly_rainfall = rainfall[0]
     # Rainfall data is: 7 Day, 10 Day, 14 Day, 30 Day, 60 Day, 90 Day, Current Month, YTD, Previous Year
 
-    print (f"This week we got {weekly_rainfall} inches of rain.")
+    print (f"This week {city} got {weekly_rainfall} inches of rain.")
