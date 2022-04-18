@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>5819c0d2-d1a0-4c90-a806-381bd2aff85c</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>GetForecast.py</StartupFile>
+    <StartupFile>Spork.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -23,6 +23,7 @@
   <ItemGroup>
     <Compile Include="GetForecast.py" />
     <Compile Include="Rainfall_Monitor.py" />
+    <Compile Include="Spork.py" />
     <Compile Include="WeatherAPI.py" />
   </ItemGroup>
   <ItemGroup>
